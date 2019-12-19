@@ -28,9 +28,7 @@ export default () => {
     e.preventDefault();
     const emailSignIn = divElement.querySelector('#email').value;
     const passwordSignIn = divElement.querySelector('#password').value;
-    firebaseSignIn(emailSignIn, passwordSignIn).then(() => {
-      window.location.hash('');
-    });
+    firebaseSignIn(emailSignIn, passwordSignIn);
   });
   return divElement;
 };
