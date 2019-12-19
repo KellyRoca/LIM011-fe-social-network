@@ -11,7 +11,7 @@ export const initFire = () => {
   });
 };
 
-//Crear usuario con email y password
+// Crear usuario con email y password
 export const firebaseSignIn = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
     // Handle Errors here.

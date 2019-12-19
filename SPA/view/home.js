@@ -1,9 +1,9 @@
-import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js'
+import { authFace, authGoogle, authEmail } from '../functions/auth-firebase.js';
 // import { promAuthFace } from '../functions/controller-firebase'
 
 export default () => {
-  const viewHome =
-    `<header class="header-inicio">
+  const viewHome = `
+  <header class="header-inicio">
     <figure class="img-header">
       <img src="img/fondo-pet.jpg" alt="fondo de cabecera">
     </figure>
@@ -29,7 +29,7 @@ export default () => {
   divElement.classList.add('div-home');
   divElement.innerHTML = viewHome;
 
-  //funciones
+  // funciones
   const db = firebase.firestore();
   const sesion = divElement.querySelector('#button');
   sesion.addEventListener('click', (e) => {
@@ -46,7 +46,7 @@ export default () => {
     })
       .catch(function (error) {
         console.error("Error adding document: ", error);
-      });
+    });
   });
 
   const btnFace = divElement.querySelector('#btnFace')
@@ -54,16 +54,16 @@ export default () => {
     e.preventDefault();
     authFace().then((result) => {
       console.log(result.user.displayName);
-      db.collection("infoUserfacebook").add({
+      db.collection('infoUserfacebook').add({
         email: result.user.email,
         name: result.user.displayName,
-        photo: result.user.photoURL
-      })
+        photo: result.user.photoURL,
+      });
     });
     // promAuthFace();
   });
 
-  const btnGoogle = divElement.querySelector('#btnGoogle')
+  const btnGoogle = divElement.querySelector('#btnGoogle');
   btnGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     authGoogle();
