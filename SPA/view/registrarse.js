@@ -1,5 +1,6 @@
 import { firebaseSignIn } from '../functions/auth-firebase.js';
 
+
 export default () => {
   const contentViewSignIn = `
   <header class="header-inicio">
@@ -29,6 +30,7 @@ export default () => {
     const emailSignIn = divElement.querySelector('#email').value;
     const passwordSignIn = divElement.querySelector('#password').value;
     firebaseSignIn(emailSignIn, passwordSignIn);
+    console.log(infoUserActual);
   });
   return divElement;
 };
