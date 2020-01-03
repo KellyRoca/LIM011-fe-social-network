@@ -1,7 +1,7 @@
 import { changeView } from '../view-controler/index.js'
 
 export const initFire = () => {
-  firebase.auth().onAuthStateChanged( (user) => {
+  firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       console.log(user);
       changeView('#catalogo');
@@ -25,7 +25,12 @@ export const firebaseSignIn = (email, password) => {
 
 // Loguearse con email y password
 export const firebaseLogIn = (email, password) => {
-  firebase.auth().signInWithEmailAndPassword(email, password);
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });;
 };
 
 // Auth con Facebook
