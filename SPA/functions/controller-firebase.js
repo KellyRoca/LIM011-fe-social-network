@@ -1,31 +1,20 @@
-import { authFace, authGoogle, outUser } from './auth-firebase.js'
+import { authFace, authGoogle, outUser } from './auth-firebase.js';
 
-export const promAuthFace = () => {
-  authFace().then((result) => {
-    console.log(result.user.displayName);
-    return firebase.firestore().collection("users").add({
-      email: result.user.email,
-      name: result.user.displayName,
-      photo: result.user.photoURL,
-    });
-  });
-};
+export const promAuthFace = () => authFace().then((result) => firebase.firestore().collection('users').add({
+  email: result.user.email,
+  name: result.user.displayName,
+  photo: result.user.photoURL,
+}));
 
-export const promAuthGoogle = () => {
-  authGoogle().then((result) => {
-    console.log(result.user.displayName);
-    return firebase.firestore().collection("users").add({
-      email: result.user.email,
-      name: result.user.displayName,
-      photo: result.user.photoURL,
-    })
-  });
-};
+export const promAuthGoogle = () => authGoogle().then((result) => firebase.firestore().collection('users').add({
+  email: result.user.email,
+  name: result.user.displayName,
+  photo: result.user.photoURL,
+}));
 
 export const userActual = () => {
   let infoUserActual;
-  var user = firebase.auth().currentUser;
-  var name, email, photoUrl;
+  const user = firebase.auth().currentUser;
 
   if (user != null) {
     infoUserActual = {
@@ -39,9 +28,9 @@ export const userActual = () => {
 };
 
 export const promOutUser = () => {
-  outUser().then(function () {
+  outUser().then(() => {
     console.log('Sign-out successful');
-  }).catch(function (error) {
+  }).catch((error) => {
     console.log('An error happened');
   });
 };

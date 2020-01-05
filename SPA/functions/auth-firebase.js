@@ -18,7 +18,6 @@ export const firebaseSignIn = (email, password) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    alert(errorMessage);
     // ...
   });
 };
@@ -26,7 +25,7 @@ export const firebaseSignIn = (email, password) => {
 // Loguearse con email y password
 export const firebaseLogIn = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
+// Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
     // ...
@@ -35,9 +34,9 @@ export const firebaseLogIn = (email, password) => {
 
 // Auth con Facebook
 export const authFace = () => {
-    console.log('funciona Facebook :) !');
-    var provider = new firebase.auth.FacebookAuthProvider();
-    return firebase.auth().signInWithPopup(provider);
+  console.log('funciona Facebook :) !');
+  const provider = new firebase.auth.FacebookAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
 };
 
 //Auth con Google
@@ -47,6 +46,7 @@ export const authGoogle = () => {
   return firebase.auth().signInWithPopup(provider);
 };
 
+// Desloguear cerrar sesion 
 export const outUser = () => {
   return firebase.auth().signOut();
 };

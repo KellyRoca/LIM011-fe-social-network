@@ -1,4 +1,3 @@
-import { firebaseSignIn } from '../functions/auth-firebase.js';
 
 export default () => {
   const contentViewSignIn = `
@@ -10,10 +9,10 @@ export default () => {
   </header>
   <form>
     <h1>Regístrate</h1>
-    <input class= 'container' type="text" id='nameSignIn' placeholder="Nombre" required>
-    <input  class= 'container' type="text" id='lastNameSignIn' placeholder="Apellidos" required>
-    <input  class= 'container' type="email" id ='email' placeholder="Correo electrónico" required>
-    <input    class= 'container'type="password" id ='password' placeholder="Contraseña nueva" required>
+    <input type="text" id='nameSignIn' placeholder="Nombre" required>
+    <input type="text" id='lastNameSignIn' placeholder="Apellidos" required>
+    <input type="email" id ='email' placeholder="Correo electrónico" required>
+    <input type="password" id ='password' placeholder="Contraseña nueva" required>
     <!-- <p>Fecha de nacimiento</p>
     <input type='date' required> -->
     <button href="" id='btnSignIn'>Crear cuenta</button>
@@ -28,7 +27,9 @@ export default () => {
     e.preventDefault();
     const emailSignIn = divElement.querySelector('#email').value;
     const passwordSignIn = divElement.querySelector('#password').value;
-    firebaseSignIn(emailSignIn, passwordSignIn);
+    firebaseSignIn(emailSignIn, passwordSignIn).then(() => {
+      window.location.hash('');
+    });
   });
   return divElement;
 };
