@@ -1,4 +1,4 @@
-import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js';
+import { promAuthFace, promAuthGoogle} from '../functions/controller-firebase.js';
 
 export default () => {
   const viewHome = `<header class="header-inicio">

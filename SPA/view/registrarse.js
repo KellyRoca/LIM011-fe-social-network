@@ -1,3 +1,5 @@
+import { setdatos} from '../functions/controller-firebase.js';
+import { authEmail} from '../functions/auth-firebase.js';
 
 export default () => {
   const contentViewSignIn = `
@@ -20,16 +22,30 @@ export default () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = contentViewSignIn;
 
-
+  const funcion = () => {
+    const nameUser = divElement.querySelector('#nameSignIn').value;
+    const email = divElement.querySelector('#email').value;
+    const password = divElement.querySelector('#password').value;
+    if (email !== '' && password !== '') {
+      authEmail(email, password)
+        .then((newUser) => {
+          const datitos = {
+            name: nameUser,
+            email: newUser.user.email,
+            photoURL: 'https://img.icons8.com/ios-glyphs/120/000000/user-female.png',
+          };
+          setdatos('probando', datitos);
+  }
+  };
+  };
   // Selección de elementos del DOM
   const btnSignIn = divElement.querySelector('#btnSignIn');
   btnSignIn.addEventListener('click', (e) => {
     e.preventDefault();
-    const emailSignIn = divElement.querySelector('#email').value;
-    const passwordSignIn = divElement.querySelector('#password').value;
-    firebaseSignIn(emailSignIn, passwordSignIn).then(() => {
-      window.location.hash('');
-    });
-  });
+   
+          // window.location.hash = '#/';
+        });
+    // window.location.hash('');
+  };
   return divElement;
 };

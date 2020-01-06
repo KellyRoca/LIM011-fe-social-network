@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { components } from '../view/index.js';
 
 export const changeView = (route) => {
