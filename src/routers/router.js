@@ -1,6 +1,6 @@
 import components from '../views/components-views.js';
 
-export const changeView = (hash) => {
+const changeView = (hash) => {
   const container = document.querySelector('#container');
   container.innerHTML = '';
   switch (hash) {
@@ -10,7 +10,11 @@ export const changeView = (hash) => {
       return container.appendChild(components.login());
     case '#/Registro':
       return container.appendChild(components.register());
+    case '#/Principal':
+      return container.appendChild(components.home());
     default:
       return container.appendChild(components.register());
   }
 };
+
+export default changeView;

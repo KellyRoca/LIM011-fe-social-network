@@ -26,7 +26,7 @@ export const loginFacebookEvent = (event) => {
         email: result.user.email,
       };
       addInFirestore('probando', uidUser, dataUser);
-      window.location.hash = '#/home';
+      window.location.hash = '#/Principal';
     }).catch((error) => {
       const errorCode = error.code;
       const erroMessage = error.message;
@@ -45,7 +45,7 @@ export const loginGoogleEvent = (event) => {
         email: result.user.email,
       };
       addInFirestore('probando', uidUser, dataUser);
-      window.location.hash = '#/home';
+      window.location.hash = '#/Principal';
     }).catch((error) => {
       const errorCode = error.code;
       const erroMessage = error.message;

@@ -1,4 +1,4 @@
-import { changeView } from './routers/router.js';
+import changeView from './routers/router.js';
 
 const init = () => {
   window.addEventListener('hashchange', () => changeView(window.location.hash));

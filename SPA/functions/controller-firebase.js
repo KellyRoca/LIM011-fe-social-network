@@ -1,4 +1,5 @@
 import { authFace, authGoogle, outUser } from './auth-firebase.js';
+import { addCommentFirestore } from './post-firebase.js';
 
 
 export const promAuthFace = () => authFace().then((result) => firebase.firestore().collection('users').add({
@@ -34,4 +35,11 @@ export const promOutUser = () => {
   }).catch((error) => {
     console.log('An error happened');
   });
+};
+
+export const promAddCommentFirestore = (texto, privacy) => {
+  return addCommentFirestore(texto, userActual, privacy).then((docRef) => docRef.id)
+    .catch((error) => {
+      console.error('Error: ', error);
+    });
 };
