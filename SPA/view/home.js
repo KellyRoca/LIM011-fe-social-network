@@ -1,4 +1,4 @@
-import { promAuthFace, promAuthGoogle} from '../functions/controller-firebase.js';
+import { promAuthFace, promAuthGoogle } from '../functions/controller-firebase.js';
 
 export default () => {
   const viewHome = `<header class="header-inicio">
@@ -10,7 +10,7 @@ export default () => {
     <h1 class="logo-home">PET LOVERS</h1>
     <p id="welcome-text" class="msj text">¡Bienvenid@ PetLover!</p>
     <form class="form-loging">
-      <input type="email" placeholder="e-mail" id="e-mail">
+      <input type="email" placeholder="e-mail" id="email">
       <input type="password" placeholder="contraseña" id="password">
       <button class="btn-init" type="text" id="button"><a id= "changeView" href="">Iniciar sesión</a></button>
       <p class="text">O bien ingresa con...</p>
@@ -50,6 +50,14 @@ export default () => {
       const email = error.email;
       const credential = error.credential;
     });
+  });
+
+  const botonIniciarSesion = divElement.querySelector('#button');
+  botonIniciarSesion.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = divElement.querySelector('#email').value;
+    const password = divElement.querySelector('#password').value;
+    firebaseLogIn(email, password);
   });
 
   return divElement;

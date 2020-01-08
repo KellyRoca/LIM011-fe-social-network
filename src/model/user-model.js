@@ -1,34 +1,20 @@
-
-// export const initFire = () => {
-//   firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       console.log('conectado');
-//       changeView('#catalogo');
-//     } else {
-//       console.log('El usuario NO stá conectado');
-//       changeView('');
-//     }
-//   });
-// };
-
 // Crear usuario con email y password
-export const createUserAuth = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password);
-};
+// eslint-disable-next-line max-len
+export const createUserAuth = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
 
 // Loguearse con email y password
-export const logInUser = (email, password) => {
+export const loginUser = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
 // Auth con Facebook
-export const authFace = () => {
+export const loginFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
 
 // Auth con Google
-export const authGoogle = () => {
+export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };

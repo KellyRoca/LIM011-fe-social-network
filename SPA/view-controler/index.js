@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { components } from '../view/index.js';
 
 export const changeView = (route) => {
@@ -8,7 +7,7 @@ export const changeView = (route) => {
     case '': { return container.appendChild(components.home()); }
     case '#catalogo': { return container.appendChild(components.catalogo()); }
     case '#/catalogo': { return container.appendChild(components.catalogo()); }
-    case '#/Registro': { return container.appendChild(components.registrarse()); }
+    case '#/Registro': { return container.appendChild(components.register()); }
     default:
     { return container.appendChild(components.diferent()); }
   }

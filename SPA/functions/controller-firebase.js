@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { authFace, authGoogle, outUser } from './auth-firebase.js';
 
 
