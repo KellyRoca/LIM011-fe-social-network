@@ -14,6 +14,7 @@ export const promAuthGoogle = () => authGoogle().then((result) => firebase.fires
   photo: result.user.photoURL,
 }));
 
+
 export const userActual = () => {
   const user = firebase.auth().currentUser;
   const infoUserActual = {
@@ -24,6 +25,7 @@ export const userActual = () => {
   };
   return infoUserActual;
 };
+
 
 export const setdatos = (colecion, datos) => {
   firebase.firestore().collection(colecion).add(datos);

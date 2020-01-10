@@ -1,9 +1,13 @@
+/* eslint-disable import/no-cycle */
 import { menuAnimation } from '../functions/animation.js';
 import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
-import { closeModal, closeGrey, showModal } from '../functions/functions-dom.js';
-import { showAllComments } from '../functions/post-firebase.js';
+import {
+  closeModal, closeGrey, showModal, createComment,
+} from '../functions/functions-dom.js';
+import { iterateComments } from '../functions/post-firebase.js';
 
 export default (posts) => {
+  console.log(posts);
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -75,7 +79,7 @@ export default (posts) => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
-  
+
   // AGREGAR COMENTARIO A FIRESTORE y mostrandolo en la pagina
   const comentarios = divElement.querySelector('#comentarios');
   const publicar = divElement.querySelector('#compartir');
@@ -84,7 +88,6 @@ export default (posts) => {
     e.preventDefault();
     const texto = divElement.querySelector('#texto');
     promAddCommentFirestore(texto, privacy);
-    //showAllComments(comentarios);
     texto.value = '';
   });
 
@@ -123,6 +126,20 @@ export default (posts) => {
   const modal = divElement.querySelector('#modal');
   const close = divElement.querySelector('#close');
 
+  // PINTADO DE DATOS DEL USUARIO
+  const userContainer = divElement.querySelector('#user-container');
+  getUser((users) => {
+    users.forEach((user) => {
+      if (user.id === userActive().uid) {
+        userContainer.appendChild(userView(user));
+      }
+    });
+  });
+  //
+
+
+  const uidU = firebase.auth().currentUser.uid;
+  console.log(uidU);
   photoProfile.src = userActual().photoUrl;
   nameUser.innerHTML = userActual().name;
   photoProfileDestok.src = userActual().photoUrl;
@@ -136,7 +153,8 @@ export default (posts) => {
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
 
-  //cargar y mostrar todos los comenarios
-  //window.onload = showAllComments(comentarios);
+  // Pintando todos los comentarios
+  iterateComments(posts, createComment, comentarios);
+
   return divElement;
 };
