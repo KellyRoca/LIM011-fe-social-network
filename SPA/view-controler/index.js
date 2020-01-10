@@ -15,9 +15,7 @@ export const changeView = (route) => {
         console.log('tfcghj', data);
         container.appendChild(components.catalogo(data));
       });
-      //return container.appendChild(components.catalogo());
     }
-    case '#/Registro': { return container.appendChild(components.registrarse()); }
     default:
     { return container.appendChild(components.diferent()); }
   }

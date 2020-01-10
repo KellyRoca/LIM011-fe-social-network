@@ -11,9 +11,9 @@ const changeView = (hash) => {
     case '#/Registro':
       return container.appendChild(components.register());
     case '#/Principal':
-      return container.appendChild(components.home());
-    default:
       return container.appendChild(components.register());
+    default:
+      return container.appendChild(components.login());
   }
 };
 

@@ -76,7 +76,6 @@ export default (posts) => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewCatalogo;
-  
   // AGREGAR COMENTARIO A FIRESTORE y mostrandolo en la pagina
   const comentarios = divElement.querySelector('#comentarios');
   const publicar = divElement.querySelector('#compartir');

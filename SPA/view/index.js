@@ -1,11 +1,14 @@
+/* eslint-disable import/no-cycle */
 import Home from './home.js';
 import Catalogo from './catalogo.js';
 import Diferent from './404.js';
-import viewRegister from './registrarse.js';
+import Registrarse from './registrarse.js';
 
-export const components = {
+const components = {
   home: Home,
   catalogo: Catalogo,
   diferent: Diferent,
-  register: viewRegister,
+  registrarse: Registrarse,
 };
+
+export { components };

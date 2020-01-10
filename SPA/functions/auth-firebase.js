@@ -15,12 +15,18 @@ export const initFire = () => {
 };
 
 // Crear usuario con email y password
-export const createUserAuth = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password);
+export const firebaseSignIn = (email, password) => {
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert(errorMessage);
+    // ...
+  });
 };
 
 // Loguearse con email y password
-export const logInUser = (email, password) => {
+export const firebaseLogIn = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
@@ -36,14 +42,4 @@ export const authGoogle = () => {
   return firebase.auth().signInWithPopup(provider);
 };
 
-// Observador del usuario
-export const currentUser = () => firebase.auth().currentUser;
-
-// Crear en colecciones en Firestore
-export const addInFirestore = (nameCollection, id, set) => {
-  const addCollection = firebase.firestore().collection(nameCollection).doc(id).set(set);
-  return addCollection;
-};
-
-// Salir de sesión
 export const outUser = () => firebase.auth().signOut();

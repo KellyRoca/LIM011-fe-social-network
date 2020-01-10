@@ -4,14 +4,18 @@ import {
 
 export const loginUserEvent = (event) => {
   event.preventDefault();
-  const btnLogin = event.target;
-  const email = btnLogin.closest('form').querySelector('input[type=email]').value;
-  const password = btnLogin.closest('form').querySelector('input[type=password]').value;
+  const buttonLogin = event.target;
+  const email = buttonLogin.closest('form').querySelector('[type=email]').value;
+  const password = buttonLogin.closest('form').querySelector('[type=password]').value;
   if (email !== '' && password !== '') {
-    loginUser(email, password).catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-    });
+    loginUser(email, password)
+      .then(() => {
+        window.location.hash = '#/Principal';
+      }).catch((error) => {
+        const errorCode = error.code;
+        const erroMessage = error.message;
+        console.log(errorCode, erroMessage);
+      });
   }
 };
 

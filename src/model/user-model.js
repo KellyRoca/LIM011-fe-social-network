@@ -4,7 +4,7 @@ export const createUserAuth = (email, password) => firebase.auth().createUserWit
 
 // Loguearse con email y password
 export const loginUser = (email, password) => {
-  firebase.auth().signInWithEmailAndPassword(email, password);
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
 // Auth con Facebook
@@ -30,3 +30,19 @@ export const addInFirestore = (nameCollection, id, set) => {
 
 // Salir de sesión
 export const outUser = () => firebase.auth().signOut();
+
+// Funcion user actual
+export const userActual = () => {
+  let infoUserActual;
+  const user = firebase.auth().currentUser;
+
+  if (user != null) {
+    infoUserActual = {
+      name: user.displayName,
+      email: user.email,
+      photoUrl: user.photoURL,
+      uid: user.uid,
+    };
+  }
+  return infoUserActual;
+};

@@ -1,4 +1,5 @@
-export default () => {
+import { userActual } from '../model/user-model.js';
+export default (posts) => {
   const viewHome = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -70,7 +71,106 @@ export default () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = viewHome;
 
+   // Asignación datos básicos a perfil
+   const photoProfile = divElement.querySelector('#photoProfile');
+   const nameUser = divElement.querySelector('#nameUser');
+   const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
+   const nameUserDestok = divElement.querySelector('#nameUserDestok');
+   const nameUserHeader = divElement.querySelector('#nameUserHeader');
+   const contenido = divElement.querySelector('#contenido');
+   const modal = divElement.querySelector('#modal');
+   const close = divElement.querySelector('#close');
+ 
+   photoProfile.src = userActual().photoUrl;
+   nameUser.innerHTML = userActual().displayName;
+   photoProfileDestok.src = userActual().photoUrl;
+   nameUserDestok.innerHTML = userActual().displayName;
+   nameUserHeader.innerHTML = userActual().displayName;
+ 
 
+
+    // AGREGAR COMENTARIO A FIRESTORE y muestra en la página
+    const comentarios = divElement.querySelector('#comentarios');
+    const publicar = divElement.querySelector('#compartir');
+    const privacy = divElement.querySelector('.comboPrivacy');
+    publicar.addEventListener('click', (e) => {
+      e.preventDefault();
+      const texto = divElement.querySelector('#texto');
+      promAddCommentFirestore(texto, privacy);
+      texto.value = '';
+    });
+
+
+  return divElement;
+};
+
+
+
+
+
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-cycle */
+import { menuAnimation } from '../functions/animation.js';
+import { userActual, promOutUser, promAddCommentFirestore } from '../functions/controller-firebase.js';
+import {
+  closeModal, closeGrey, showModal, createComment,
+} from '../functions/functions-dom.js';
+import { iterateComments } from '../functions/post-firebase.js';
+
+export default (posts) => {
+  console.log(posts);
+   //
+//  AQUI VA TODO EL TEMPLATE STRING
+//
+//
+  const divElement = document.createElement('div');
+  divElement.innerHTML = viewCatalogo;
+
+  // AGREGAR COMENTARIO A FIRESTORE y mostrandolo en la pagina
+  const comentarios = divElement.querySelector('#comentarios');
+  const publicar = divElement.querySelector('#compartir');
+  const privacy = divElement.querySelector('.comboPrivacy');
+  publicar.addEventListener('click', (e) => {
+    e.preventDefault();
+    const texto = divElement.querySelector('#texto');
+    promAddCommentFirestore(texto, privacy);
+    texto.value = '';
+  });
+
+  // Funciones para animacion de Menú
+  const menuMovil = divElement.querySelector('#menu-movil');
+  menuMovil.addEventListener('click', menuAnimation);
+  const menuDestok = divElement.querySelector('#icon-down');
+  menuDestok.addEventListener('click', menuAnimation);
+
+  // logOut
+
+  const outSesion = divElement.querySelector('#out-menu-destok');
+  outSesion.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+
+  const outSesionMenuDestok = divElement.querySelector('#enlaces').lastElementChild;
+  const outSesionMenuMovil = divElement.querySelector('#enlaces-destok').lastElementChild;
+  outSesionMenuDestok.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+  outSesionMenuMovil.addEventListener('click', (e) => {
+    e.preventDefault();
+    promOutUser();
+  });
+
+  // Modal para foto de perfil
+
+  photoProfile.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
+  photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
+  close.addEventListener('click', () => { closeModal(modal); });
+  window.addEventListener('click', () => { closeGrey(modal); });
+
+  // Pintando todos los comentarios
+  iterateComments(posts, createComment, comentarios, userActual);
 
   return divElement;
 };

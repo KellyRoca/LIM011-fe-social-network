@@ -10,10 +10,9 @@ const createUser = (event) => {
   const space = ' ';
   const nameCompleteUser = nameUser + space + lastNameUser;
 
-  if (emailUser !== '' && passwordUser !== '') {
+  if (emailUser !== '' || passwordUser !== '') {
     createUserAuth(emailUser, passwordUser)
       .then((result) => {
-        console.log(result);
         const uidUser = result.user.uid;
         const dataUser = {
           displayName: nameCompleteUser,

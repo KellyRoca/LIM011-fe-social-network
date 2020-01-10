@@ -10,15 +10,13 @@ export default () => {
     <h1 class="logo-home">PET LOVERS</h1>
     <p id="welcome-text" class="msj text">¡Bienvenid@ PetLover!</p>
     <form class="form-loging">
-      <input type="email" placeholder="e-mail" id="email">
+      <input type="email" placeholder="e-mail" id="e-mail">
       <input type="password" placeholder="contraseña" id="password">
       <button class="btn-init" type="text" id="button"><a id= "changeView" href="">Iniciar sesión</a></button>
       <p class="text">O bien ingresa con...</p>
       <section class="section-redes">
-
-        <i id="btn-facebook"><img class="icon-network" src="https://img.icons8.com/color/48/000000/facebook-new.png"></i>
-
-        <i id="btn-google"><img class="icon-network" src="https://img.icons8.com/color/48/000000/google-logo.png"></i>
+        <button class="btn-redes"><i class="fab fa-facebook"></i></button>
+        <button class="btn-redes"><i class="fab fa-google"></i></button>
       </section>
       <p class="text">¿No tienes una cuenta? <a class="text-link" href="#/Registro">Regístrate</a></p>
     </form>
@@ -51,14 +49,5 @@ export default () => {
       const credential = error.credential;
     });
   });
-
-  const botonIniciarSesion = divElement.querySelector('#button');
-  botonIniciarSesion.addEventListener('click', (e) => {
-    e.preventDefault();
-    const email = divElement.querySelector('#email').value;
-    const password = divElement.querySelector('#password').value;
-    firebaseLogIn(email, password);
-  });
-
   return divElement;
 };
