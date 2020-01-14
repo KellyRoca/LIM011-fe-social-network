@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   loginUser, loginFacebook, loginGoogle, addInFirestore, outUser,
 } from '../functions/user-model.js';
@@ -10,7 +11,6 @@ export const loginUserEvent = (event) => {
   if (email !== '' && password !== '') {
     loginUser(email, password).catch((error) => {
       const errorCode = error.code;
-      console.log(errorCode);
     });
   }
 };
@@ -30,7 +30,6 @@ export const loginFacebookEvent = (event) => {
     }).catch((error) => {
       const errorCode = error.code;
       const erroMessage = error.message;
-      console.log(errorCode, erroMessage);
     });
 };
 
@@ -49,7 +48,6 @@ export const loginGoogleEvent = (event) => {
     }).catch((error) => {
       const errorCode = error.code;
       const erroMessage = error.message;
-      console.log(errorCode, erroMessage);
     });
 };
 
@@ -61,6 +59,5 @@ export const OutSesion = (event) => {
     }).catch((error) => {
       const errorCode = error.code;
       const erroMessage = error.message;
-      console.log(errorCode, erroMessage);
     });
 };

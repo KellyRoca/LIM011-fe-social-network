@@ -1,10 +1,12 @@
+
 // Crear usuario con email y password
 // eslint-disable-next-line max-len
 export const createUserAuth = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
 
 // Loguearse con email y password
+// eslint-disable-next-line arrow-body-style
 export const loginUser = (email, password) => {
-  firebase.auth().signInWithEmailAndPassword(email, password);
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
 // Auth con Facebook
@@ -30,3 +32,19 @@ export const addInFirestore = (nameCollection, id, set) => {
 
 // Salir de sesión
 export const outUser = () => firebase.auth().signOut();
+
+//
+// export const getData = () => firebase.firestore().collection('users')
+//   .onSnapshot((querySnapshot) => {
+//     const data = [];
+//     querySnapshot.forEach((doc) => {
+//       if (doc.id === currentUser().uid) {
+//         data.push(doc.data().displayName, doc.data().photoUrl, doc.data().email);
+//       }
+//     });
+//   });
+
+// export const prueba = () => firebase.firestore().collection('users').doc(currentUser().uid)
+//   .onSnapshot((doc) => doc.data());
+
+// export const objDataUser = prueba();

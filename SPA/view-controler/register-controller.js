@@ -13,7 +13,6 @@ const createUser = (event) => {
   if (emailUser !== '' && passwordUser !== '') {
     createUserAuth(emailUser, passwordUser)
       .then((result) => {
-        console.log(result);
         const uidUser = result.user.uid;
         const dataUser = {
           name: nameCompleteUser,

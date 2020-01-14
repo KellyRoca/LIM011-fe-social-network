@@ -7,7 +7,6 @@ import {
 import { iterateComments } from '../functions/post-firebase.js';
 
 export default (posts) => {
-  console.log(posts);
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -127,19 +126,8 @@ export default (posts) => {
   const close = divElement.querySelector('#close');
 
   // PINTADO DE DATOS DEL USUARIO
-  const userContainer = divElement.querySelector('#user-container');
-  getUser((users) => {
-    users.forEach((user) => {
-      if (user.id === userActive().uid) {
-        userContainer.appendChild(userView(user));
-      }
-    });
-  });
-  //
 
-
-  const uidU = firebase.auth().currentUser.uid;
-  console.log(uidU);
+  // const uidU = firebase.auth().currentUser.uid;
   photoProfile.src = userActual().photoUrl;
   nameUser.innerHTML = userActual().name;
   photoProfileDestok.src = userActual().photoUrl;

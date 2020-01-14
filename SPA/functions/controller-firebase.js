@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { authFace, authGoogle, outUser } from './auth-firebase.js';
 import { addCommentFirestore } from './post-firebase.js';
 
@@ -33,15 +34,15 @@ export const setdatos = (colecion, datos) => {
 
 export const promOutUser = () => {
   outUser().then(() => {
-    console.log('Sign-out successful');
+  // eslint-disable-next-line no-unused-vars
   }).catch((error) => {
-    console.log('An error happened');
   });
 };
 
+// eslint-disable-next-line arrow-body-style
 export const promAddCommentFirestore = (texto, privacy) => {
   return addCommentFirestore(texto, userActual, privacy).then((docRef) => docRef.id)
+    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
-      console.error('Error: ', error);
     });
 };

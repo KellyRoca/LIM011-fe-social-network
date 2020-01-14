@@ -1,6 +1,6 @@
 export default () => {
-    const viewDiferent = 
-    `<h1 class="logo">404 -PAGINA NO ENCONTRADA</h1>`
+  // eslint-disable-next-line quotes
+  const viewDiferent = `<h1 class="logo">404 -PAGINA NO ENCONTRADA</h1>`;
 
   const divElement = document.createElement('div');
   divElement.innerHTML = viewDiferent;

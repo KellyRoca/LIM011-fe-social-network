@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line import/no-cycle
 import { time } from './functions-dom.js';
 
 export const addCommentFirestore = (texto, userActual, privacy) => {
@@ -35,34 +38,28 @@ export const showAllComments = (fnGetData) => {
 };
 
 export const deleteComment = (id) => {
-  console.log(id);
   firebase.firestore().collection('publicaciones').doc(id).delete()
     .then(() => {
-      console.log('Eliminado');
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
-      console.error('Error no se pudo remover: ', error);
     });
 };
 
 export const newText = (texto, id, privacy) => {
-  console.log(id);
   const ref = firebase.firestore().collection('publicaciones').doc(id);
   return ref.update({
     contenido: texto.value,
     privacidad: privacy,
   })
     .then(() => {
-      console.log('Document successfully updated!');
     })
     .catch((error) => {
     // The document probably doesn't exist.
-      console.error('Error updating document: ', error);
     });
 };
 
 export const editCommentDom = (texto) => {
-  console.log(texto.value);
   texto.disabled = false;
   texto.focus();
 };
