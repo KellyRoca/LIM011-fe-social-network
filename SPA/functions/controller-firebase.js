@@ -1,7 +1,12 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable no-console */
+/* eslint-disable import/named */
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
+/* eslint-disable arrow-body-style */
+/* eslint-disable max-len */
+/* eslint-disable import/no-cycle */
 import { authFace, authGoogle, outUser } from './auth-firebase.js';
 import { addCommentFirestore } from './post-firebase.js';
-
 
 export const promAuthFace = () => authFace().then((result) => firebase.firestore().collection('users').add({
   email: result.user.email,
@@ -15,34 +20,32 @@ export const promAuthGoogle = () => authGoogle().then((result) => firebase.fires
   photo: result.user.photoURL,
 }));
 
-
 export const userActual = () => {
+  let infoUserActual;
   const user = firebase.auth().currentUser;
-  const infoUserActual = {
-    name: user.displayName,
-    email: user.email,
-    photoUrl: user.photoURL,
-    uid: user.uid,
-  };
+
+  if (user != null) {
+    infoUserActual = {
+      name: user.displayName,
+      email: user.email,
+      photoUrl: user.photoURL,
+      uid: user.uid,
+    };
+  }
   return infoUserActual;
-};
-
-
-export const setdatos = (colecion, datos) => {
-  firebase.firestore().collection(colecion).add(datos);
 };
 
 export const promOutUser = () => {
   outUser().then(() => {
-  // eslint-disable-next-line no-unused-vars
+    console.log('Sign-out successful');
   }).catch((error) => {
+    console.log(`An error happened${error}`);
   });
 };
 
-// eslint-disable-next-line arrow-body-style
 export const promAddCommentFirestore = (texto, privacy) => {
-  return addCommentFirestore(texto, userActual, privacy).then((docRef) => docRef.id)
-    // eslint-disable-next-line no-unused-vars
+  return addCommentFirestore(texto, privacy).then((docRef) => docRef.id)
     .catch((error) => {
+      console.error('Error: ', error);
     });
 };

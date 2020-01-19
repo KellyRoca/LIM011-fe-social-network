@@ -1,9 +1,13 @@
+/* eslint-disable no-console */
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-unused-vars */
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 // eslint-disable-next-line import/no-cycle
-import { time } from './functions-dom.js';
+import { time, removeItemArray } from './functions-dom.js';
+import { userActual } from './controller-firebase.js';
 
-export const addCommentFirestore = (texto, userActual, privacy) => {
+export const addCommentFirestore = (texto, privacy) => {
   const db = firebase.firestore();
   return db.collection('publicaciones').add({
     id: userActual().uid,
@@ -11,7 +15,8 @@ export const addCommentFirestore = (texto, userActual, privacy) => {
     contenido: texto.value,
     fecha: `${time(new Date()).day}/${time(new Date()).month}/${time(new Date()).year}`,
     hora: `${time(new Date()).hours}:${time(new Date()).minutes}`,
-    likes: 0,
+    likesTotal: 0,
+    userLikes: [],
     fechaYhora: new Date(),
     privacidad: privacy.value,
   });
@@ -38,24 +43,29 @@ export const showAllComments = (fnGetData) => {
 };
 
 export const deleteComment = (id) => {
+  console.log(id);
   firebase.firestore().collection('publicaciones').doc(id).delete()
     .then(() => {
+      console.log('Eliminado');
     })
-    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
+      console.error('Error no se pudo remover: ', error);
     });
 };
 
 export const newText = (texto, id, privacy) => {
+  console.log(id);
   const ref = firebase.firestore().collection('publicaciones').doc(id);
   return ref.update({
     contenido: texto.value,
     privacidad: privacy,
   })
     .then(() => {
+      console.log('Document successfully updated!');
     })
     .catch((error) => {
     // The document probably doesn't exist.
+      console.error('Error updating document: ', error);
     });
 };
 
@@ -71,6 +81,64 @@ export const saveNewComment = (texto, id, privacy) => {
 
 export const iterateComments = (data, createComment, container) => {
   data.forEach((doc) => {
-    createComment(container, doc);
+    if (userActual().uid === doc.data.id && doc.data.privacidad === 'publica') {
+      createComment(container, doc);
+    }
+    if (userActual().uid !== doc.data.id && doc.data.privacidad === 'publica') {
+      const objElements = createComment(container, doc);
+      objElements.btnEdit.classList.add('hide');
+      objElements.btnClose.classList.add('hide');
+    }
+    if (userActual().uid === doc.data.id && doc.data.privacidad === 'privada') {
+      createComment(container, doc);
+    }
   });
+};
+
+export const likeMoreUpdate = (doc) => {
+  let addlike = true;
+  const arrayUsers = doc.data.userLikes;
+  arrayUsers.forEach((user) => {
+    if (user !== userActual().uid) {
+      addlike = true;
+    }
+  });
+  if (addlike) {
+    arrayUsers.push(userActual().uid);
+  }
+  const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
+  return ref.update({
+    userLikes: arrayUsers,
+    likesTotal: doc.data.likesTotal + 1,
+  });
+};
+
+export const likeLessUpdate = (doc) => {
+  const arrayUsers = doc.data.userLikes;
+  arrayUsers.forEach((user) => {
+    if (user === userActual().uid) {
+      removeItemArray(arrayUsers, userActual().uid);
+      arrayUsers.splice(arrayUsers.indexOf(userActual().uid), 1);
+    }
+  });
+  console.log('base de datos actualizada');
+  const ref = firebase.firestore().collection('publicaciones').doc(doc.id);
+  return ref.update({
+    userLikes: arrayUsers,
+    likesTotal: doc.data.likesTotal - 1,
+  });
+};
+
+export const printLike = (doc) => {
+  let boolean = false;
+  if (doc.data.userLikes === undefined) {
+    boolean = false;
+  } else {
+    doc.data.userLikes.forEach((user) => {
+      if (userActual().uid === user) {
+        boolean = true;
+      }
+    });
+  }
+  return boolean;
 };

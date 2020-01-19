@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 
 // Crear usuario con email y password
 // eslint-disable-next-line max-len
@@ -33,16 +34,36 @@ export const addInFirestore = (nameCollection, id, set) => {
 // Salir de sesión
 export const outUser = () => firebase.auth().signOut();
 
-//
-// export const getData = () => firebase.firestore().collection('users')
+
+// export const getData = (datosRecibidos) => firebase.firestore().collection('users')
 //   .onSnapshot((querySnapshot) => {
 //     const data = [];
 //     querySnapshot.forEach((doc) => {
 //       if (doc.id === currentUser().uid) {
-//         data.push(doc.data().displayName, doc.data().photoUrl, doc.data().email);
+//         console.log(doc.data().name);
+
+//         data.push(doc.data().name);
 //       }
 //     });
 //   });
+
+
+// export const datosUsers = () => {
+//   const getDatos = firebase.firestore().collection('users');
+//   const arrData = [];
+//   getDatos.onSnapshot((allDocs) => {
+//     allDocs.forEach((doc) => {
+//       if (doc.id === currentUser().uid) {
+//         const obj = {
+//           name: doc.data().name,
+//         };
+//         arrData.push(obj);
+//       }
+//     });
+//   });
+// };
+
+
 
 // export const prueba = () => firebase.firestore().collection('users').doc(currentUser().uid)
 //   .onSnapshot((doc) => doc.data());

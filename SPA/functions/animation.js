@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export const menuAnimation = () => {
   const menu = document.querySelector('#enlaces');
   const menuDestok = document.querySelector('#enlaces-destok');

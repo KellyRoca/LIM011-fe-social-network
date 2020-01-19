@@ -14,22 +14,22 @@ export default (posts) => {
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
     <nav id="enlaces" class="animationOne">
-      <p class="text">Mi perfil</p>
+      <a href="#/catalogo" class="profile-movil text">Muro</a>
       <p class="text">Salir</p>
     </nav>
     <h1 class="logo-movil">PET LOVERS</h1>
   </header>
   <div class="list-menu-destok">
-  <menu id="menu-movil-destok"><span id="nameUserHeader">${posts.name}</span><i id="icon-down" class="fas fa-caret-down"></i></menu>
+  <menu id="menu-movil-destok"><span id="nameUserHeader">Nombre de Mascota</span><i id="icon-down" class="fas fa-caret-down"></i></menu>
   <nav id="enlaces-destok" class="animationOne">
-    <p class="text">Mi perfil</p>
+    <a href="#/catalogo" class="profile-destok text">Muro</a>
     <p class="text">Salir</p>
   </nav>
   <h1 class="logo-destok">PET LOVERS</h1>
   <menu id="out-menu-destok">Cerrar sesión <i class="fas fa-sign-out-alt"></i></menu>
   </div>
   <main id="main-muro">
-    <section class="flex section-info-muro">
+    <section class="flex section-info-profile">
       <figure class="figure-photo">
         <img id="photoProfile" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
       </figure>
@@ -47,7 +47,7 @@ export default (posts) => {
         <img id="photoProfileDestok" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
       </figure>
       <div>
-        <p id="nameUserDestok" class="name-user">${posts.name}</p>
+        <p id="nameUserDestok" class="name-user">Nombre de Mascota</p>
         <p class="text-grey">-- Perrito --</p>
       </div>
       </div>
@@ -64,7 +64,7 @@ export default (posts) => {
         <div class="btn-coment">
             <button class="btn-img"><i class="far fa-image icons-white"></i></button>
             <select class="comboPrivacy btns-noteEdit">
-              <option value="publica" selected hidden>Privacidad</option>
+              <option value="publica">Privacidad</option>
               <option value="publica">Pública</option>
               <option value="privada">Privada</option>
             </select>
@@ -119,19 +119,19 @@ export default (posts) => {
 
   // asignancion datos básicos a perfil
   const photoProfile = divElement.querySelector('#photoProfile');
-  // const nameUser = divElement.querySelector('#nameUser');
+  const nameUser = divElement.querySelector('#nameUser');
   const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
-  // const nameUserDestok = divElement.querySelector('#nameUserDestok');
-  // const nameUserHeader = divElement.querySelector('#nameUserHeader');
+  const nameUserDestok = divElement.querySelector('#nameUserDestok');
+  const nameUserHeader = divElement.querySelector('#nameUserHeader');
   const contenido = divElement.querySelector('#contenido');
   const modal = divElement.querySelector('#modal');
   const close = divElement.querySelector('#close');
 
-  // photoProfile.src = userActual().photoUrl;
-  // nameUser.innerHTML = userActual().name;
-  // photoProfileDestok.src = userActual().photoUrl;
-  // nameUserDestok.innerHTML = userActual().name;
-  // nameUserHeader.innerHTML = userActual().name;
+  photoProfile.src = userActual().photoUrl;
+  nameUser.innerHTML = userActual().name;
+  photoProfileDestok.src = userActual().photoUrl;
+  nameUserDestok.innerHTML = userActual().name;
+  nameUserHeader.innerHTML = userActual().name;
 
   // Modal para foto de perfil
 
