@@ -13,6 +13,7 @@ export default () => {
   <input type="email" placeholder="e-mail" id="email">
   <input type="password" placeholder="contraseña" id="password">
   <button class="btn-init" type="text" id="btnLogin"><a id= "changeView" href="#/Principal">Iniciar sesión</a></button>
+  <p id = "errorMensaje"><p>
   <p class="text">O bien ingresa con...</p>
   <section class="section-redes">
 

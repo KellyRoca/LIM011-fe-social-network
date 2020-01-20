@@ -1,0 +1,36 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+@media all and (max-width: 800px) {
+  .navigation {
+    justify-content: space-around;
+  }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+  .navigation {
+    flex-direction: column;
+  }
+}
+
+.background {
+  justify-content: center;
+  display: flex;
+  height: 30%;
+  width: 40%;
+}
+
+#photo {
+  display: flex;
+  height: 14%;
+  width: 14%;
+}

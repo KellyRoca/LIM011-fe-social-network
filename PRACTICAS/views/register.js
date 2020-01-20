@@ -1,4 +1,4 @@
-import { createUser } from '../view-controler/register-controller.js';
+import { createUser } from '../controllers/register-controller.js';
 
 export default () => {
   const viewRegister = `

@@ -34,38 +34,12 @@ export const addInFirestore = (nameCollection, id, set) => {
 // Salir de sesión
 export const outUser = () => firebase.auth().signOut();
 
-
-// export const getData = (datosRecibidos) => firebase.firestore().collection('users')
-//   .onSnapshot((querySnapshot) => {
-//     const data = [];
-//     querySnapshot.forEach((doc) => {
-//       if (doc.id === currentUser().uid) {
-//         console.log(doc.data().name);
-
-//         data.push(doc.data().name);
-//       }
-//     });
-//   });
-
-
-// export const datosUsers = () => {
-//   const getDatos = firebase.firestore().collection('users');
-//   const arrData = [];
-//   getDatos.onSnapshot((allDocs) => {
-//     allDocs.forEach((doc) => {
-//       if (doc.id === currentUser().uid) {
-//         const obj = {
-//           name: doc.data().name,
-//         };
-//         arrData.push(obj);
-//       }
-//     });
-//   });
-// };
-
-
-
-// export const prueba = () => firebase.firestore().collection('users').doc(currentUser().uid)
-//   .onSnapshot((doc) => doc.data());
-
-// export const objDataUser = prueba();
+// Trae data de todos los usuarios de la coleccion users
+export const getDataUser = (callback) => firebase.firestore().collection('users')
+  .onSnapshot((querySnapshot) => {
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() });
+    });
+    callback(data);
+  });

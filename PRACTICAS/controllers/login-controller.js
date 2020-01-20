@@ -1,19 +1,18 @@
-/* eslint-disable no-unused-vars */
-import {
-  loginUser, loginFacebook, loginGoogle, addInFirestore, outUser,
-} from '../functions/user-model.js';
+import { loginWithEmail, loginWithFacebook, loginWithGoogle } from '../models/auth.js';
+import { addInFirestore } from '../models/firestore.js';
 
-export const loginUserEvent = (event) => {
+export const loginWithEmailEvent = (event) => {
   event.preventDefault();
   const buttonLogin = event.target;
-  const email = buttonLogin.closest('form').querySelector('input[type=email]').value;
-  const password = buttonLogin.closest('form').querySelector('input[type=password]').value;
-  const errorMessage = buttonLogin.closest('div').querySelector('#errorMensaje');
+  const email = buttonLogin.closest('div').querySelector('[type=email]').value;
+  const password = buttonLogin.closest('div').querySelector('[type=password]').value;
+  const errorMessage = buttonLogin.closest('div').querySelector('p');
+
 
   if (email !== '' && password !== '') {
-    loginUser(email, password)
+    loginWithEmail(email, password)
       .then(() => {
-        window.location.hash = '#/Catalogo';
+        window.location.hash = '#/Home';
       }).catch((error) => {
         const errorCode = error.code;
         switch (errorCode) {
@@ -39,9 +38,9 @@ export const loginUserEvent = (event) => {
   }
 };
 
-export const loginFacebookEvent = (event) => {
+export const loginWithGoogleEvent = (event) => {
   event.preventDefault();
-  loginFacebook()
+  loginWithGoogle()
     .then((result) => {
       const uidUser = result.user.uid;
       const dataUser = {
@@ -50,16 +49,13 @@ export const loginFacebookEvent = (event) => {
         email: result.user.email,
       };
       addInFirestore('users', uidUser, dataUser);
-      window.location.hash = '#/Catalogo';
-    }).catch((error) => {
-      const errorCode = error.code;
-      const erroMessage = error.message;
+      window.location.hash = '#/Home';
     });
 };
 
-export const loginGoogleEvent = (event) => {
+export const loginWithFacebookEvent = (event) => {
   event.preventDefault();
-  loginGoogle()
+  loginWithFacebook()
     .then((result) => {
       const uidUser = result.user.uid;
       const dataUser = {
@@ -68,20 +64,6 @@ export const loginGoogleEvent = (event) => {
         email: result.user.email,
       };
       addInFirestore('users', uidUser, dataUser);
-      window.location.hash = '#/Catalogo';
-    }).catch((error) => {
-      const errorCode = error.code;
-      const erroMessage = error.message;
-    });
-};
-
-export const outSesion = (event) => {
-  event.preventDefault();
-  outUser()
-    .then(() => {
-      window.location = '';
-    }).catch((error) => {
-      const errorCode = error.code;
-      const erroMessage = error.message;
+      window.location.hash = '#/Home';
     });
 };

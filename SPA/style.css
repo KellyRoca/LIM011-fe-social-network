@@ -202,6 +202,8 @@ body {
     }
     
     .text-coment {
+        display: flex;
+        resize: none;
         border: 0;
         background-color: none;
         text-align: left;
@@ -526,4 +528,13 @@ body {
             padding: 15px;
             padding-top: 22px;
         }
+    #main-muro {
+    background-image: url('../SPA/img/fondo-pantalla2.jpg')
+    }
+    #infoCurrentUser {
+        background: cornsilk;
+    }
+    .form{
+        background: cornsilk;
+    }
     }

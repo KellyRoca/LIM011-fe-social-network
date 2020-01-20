@@ -1,6 +1,7 @@
-import { createUserAuth, addInFirestore } from '../functions/user-model.js';
+import { createNewUser } from '../models/auth.js';
+import { addInFirestore } from '../models/firestore.js';
 
-export const createUser = (event) => {
+const createUser = (event) => {
   const buttonRegister = event.target;
   const email = buttonRegister.closest('div').querySelector('[type=email]').value;
   const password = buttonRegister.closest('div').querySelector('[type=password]').value;
@@ -11,7 +12,7 @@ export const createUser = (event) => {
   const nameCompleteUser = name + space + lastName;
 
   if (email !== '' && password !== '') {
-    createUserAuth(email, password)
+    createNewUser(email, password)
       .then((result) => {
         const uidUser = result.user.uid;
         const dataUser = {
@@ -20,7 +21,7 @@ export const createUser = (event) => {
           email: result.user.email,
         };
         addInFirestore('users', uidUser, dataUser);
-        window.location.hash = '#/Catalogo';
+        window.location.hash = '#/Home';
       }).catch((error) => {
         const errorCode = error.code;
 
@@ -42,3 +43,5 @@ export const createUser = (event) => {
     errorMessage.innerHTML = 'Ingresar todos los campos';
   }
 };
+
+export { createUser };

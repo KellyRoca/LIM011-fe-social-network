@@ -52,7 +52,7 @@ export const createComment = (container, doc) => {
             </div>
               <textarea class="text-coment">${doc.data.contenido}</textarea>
             <div class="section-btns-note">
-              <button class='like btns-note ${printLike(doc) ? 'btnLikeOn' : 'btnLikeOff'}'>${doc.data.likesTotal}</button>
+              <i class='like btns-note ${printLike(doc) ? 'btnLikeOn' : 'btnLikeOff'}' ><img class="photo btns-note" src="https://img.icons8.com/flat_round/64/000000/filled-like.png">${doc.data.likesTotal}</i>
               <button class="photo btns-note"><i class="fas fa-share icons-white"></i></button>
                 <select class="comboPrivacy btns-noteEdit">
                 <option value="publica">Pública</option>
@@ -62,6 +62,7 @@ export const createComment = (container, doc) => {
               <button class="edit btns-noteEdit">Editar</button>
             </div>
          `;
+
   divContainer.innerHTML = comment;
   const btnDelete = divContainer.querySelector('.eliminar');
   const texto = divContainer.querySelector('.text-coment');

@@ -7,9 +7,11 @@ import {
   closeModal, closeGrey, showModal, createComment,
 } from '../functions/functions-dom.js';
 import { iterateComments } from '../functions/post-firebase.js';
+import { getDataUser, currentUser } from '../functions/user-model.js';
+import { userDataView } from './user-proflife-view.js';
+import { outSesion } from '../view-controler/login-controller.js';
 
 export default (posts) => {
-  console.log(posts);
   const viewCatalogo = `
     <header class="header-movil">
     <menu id="menu-movil" class="menu-movil"><i class="fas fa-bars fa-2x bars"></i></menu>
@@ -20,8 +22,8 @@ export default (posts) => {
     <h1 class="logo-movil">PET LOVERS</h1>
   </header>
   <div class="list-menu-destok">
-  <menu id="menu-movil-destok"><span id="nameUserHeader">${posts.name}</span><i id="icon-down" class="fas fa-caret-down"></i></menu>
-  <nav id="enlaces-destok" class="animationOne">
+  <menu id="menu-movil-destok"><span id="nameUserHeader"></span><i id="icon-down" class="fas fa-caret-down"></i></menu>
+  <nav id="enlaces-destok"  class="animationOne">
     <p class="text">Mi perfil</p>
     <p class="text">Salir</p>
   </nav>
@@ -42,14 +44,9 @@ export default (posts) => {
       <figure class="fig-portada">
         <img class="photo-info-muro" src="img/portada.jpg" alt="foto de portada">
       </figure>
-      <div class="div-info-muro">
-      <figure class="figure-photo">
-        <img id="photoProfileDestok" class="photo" src="img/fondo-pet.jpg" alt="foto de perfil">
-      </figure>
-      <div>
-        <p id="nameUserDestok" class="name-user">${posts.name}</p>
-        <p class="text-grey">-- Perrito --</p>
-      </div>
+      <div class="div-info-muro" id="infoCurrentUser">
+      
+
       </div>
     </section>
     <div id="modal" class="modal reset">
@@ -60,7 +57,7 @@ export default (posts) => {
   </div>
     <section class="section-publics-muro">
       <form class="form">
-        <textarea id = "texto" placeholder="¿Qué quieres compartir?" name="" id="" cols="37" rows="4"></textarea>
+        <textarea id = "texto" placeholder="¿Qué quieres compartir?" name="" id="" ></textarea>
         <div class="btn-coment">
             <button class="btn-img"><i class="far fa-image icons-white"></i></button>
             <select class="comboPrivacy btns-noteEdit">
@@ -100,11 +97,8 @@ export default (posts) => {
 
   // logOut
 
-  const outSesion = divElement.querySelector('#out-menu-destok');
-  outSesion.addEventListener('click', (e) => {
-    e.preventDefault();
-    promOutUser();
-  });
+  const outSesionUser = divElement.querySelector('#out-menu-destok');
+  outSesionUser.addEventListener('click', outSesion);
 
   const outSesionMenuDestok = divElement.querySelector('#enlaces').lastElementChild;
   const outSesionMenuMovil = divElement.querySelector('#enlaces-destok').lastElementChild;
@@ -118,6 +112,9 @@ export default (posts) => {
   });
 
   // asignancion datos básicos a perfil
+  const divInfoCurrentUser = divElement.querySelector('#infoCurrentUser');
+  const nameUserHeader = divElement.querySelector('#nameUserHeader');
+
   const photoProfile = divElement.querySelector('#photoProfile');
   // const nameUser = divElement.querySelector('#nameUser');
   const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
@@ -127,6 +124,14 @@ export default (posts) => {
   const modal = divElement.querySelector('#modal');
   const close = divElement.querySelector('#close');
 
+  getDataUser((data) => {
+    data.forEach((user) => {
+      if (user.id === currentUser().uid) {
+        divInfoCurrentUser.innerHTML = userDataView(user);
+        nameUserHeader.innerHTML = user.name;
+      }
+    });
+  });
   // photoProfile.src = userActual().photoUrl;
   // nameUser.innerHTML = userActual().name;
   // photoProfileDestok.src = userActual().photoUrl;
@@ -136,7 +141,7 @@ export default (posts) => {
   // Modal para foto de perfil
 
   photoProfile.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
-  photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
+  // photoProfileDestok.addEventListener('click', () => { showModal(contenido, userActual().photoUrl, modal); });
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
 
