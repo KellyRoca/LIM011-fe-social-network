@@ -48,13 +48,13 @@ export const createComment = (container, doc) => {
   divContainer.classList.add('coment');
   const comment = `
             <div class="title-note">
-            <p>Publicado por ${doc.data.nombre}  - ${doc.data.hora} del ${doc.data.fecha} </p><i class="eliminar fas fa-times"></i>
+            <p>Publicado por ${doc.data.nombre}  - ${doc.data.hora} del ${doc.data.fecha} </p><i class="eliminar fas fa-times"><img class ="eliminar" src="https://img.icons8.com/color/48/000000/close-window.png"></i>
             </div>
-              <textarea class="text-coment">${doc.data.contenido}</textarea>
+            <div class="title-note"> <textarea class="text-coment">${doc.data.contenido}</textarea></div>
             <div class="section-btns-note">
-              <i class='like btns-note ${printLike(doc) ? 'btnLikeOn' : 'btnLikeOff'}' ><img class="photo btns-note" src="https://img.icons8.com/flat_round/64/000000/filled-like.png">${doc.data.likesTotal}</i>
-              <button class="photo btns-note"><i class="fas fa-share icons-white"></i></button>
-                <select class="comboPrivacy btns-noteEdit">
+              <i class='like btns-note ${printLike(doc) ? 'btnLikeOn' : 'btnLikeOff'}' ><img class="photo btns-note" src="https://img.icons8.com/flat_round/64/000000/filled-like.png"></i>
+              <h2 class ="numberLike">${doc.data.likesTotal}</h2>  
+              <select class="comboPrivacy btns-noteEdit">
                 <option value="publica">Pública</option>
                 <option value="privada">Privada</option>
               </select>

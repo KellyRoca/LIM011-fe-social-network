@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-cycle */
@@ -22,7 +23,7 @@ export default (posts) => {
     <h1 class="logo-movil">PET LOVERS</h1>
   </header>
   <div class="list-menu-destok">
-  <menu id="menu-movil-destok"><span id="nameUserHeader"></span><i id="icon-down" class="fas fa-caret-down"></i></menu>
+  <menu id="menu-movil-destok"><span id="nameUserHeader"></span><i id="icon-down" class="fas fa-caret-down"><img src="https://img.icons8.com/material-sharp/24/000000/give-way--v1.png" ></i></menu>
   <nav id="enlaces-destok"  class="animationOne">
     <p class="text">Mi perfil</p>
     <p class="text">Salir</p>
@@ -117,6 +118,7 @@ export default (posts) => {
 
   const photoProfile = divElement.querySelector('#photoProfile');
   // const nameUser = divElement.querySelector('#nameUser');
+  // eslint-disable-next-line no-unused-vars
   const photoProfileDestok = divElement.querySelector('#photoProfileDestok');
   // const nameUserDestok = divElement.querySelector('#nameUserDestok');
   // const nameUserHeader = divElement.querySelector('#nameUserHeader');

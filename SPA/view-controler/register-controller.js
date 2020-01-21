@@ -1,6 +1,7 @@
 import { createUserAuth, addInFirestore } from '../functions/user-model.js';
 
 export const createUser = (event) => {
+  event.preventDefault();
   const buttonRegister = event.target;
   const email = buttonRegister.closest('div').querySelector('[type=email]').value;
   const password = buttonRegister.closest('div').querySelector('[type=password]').value;

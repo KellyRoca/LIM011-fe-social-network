@@ -5,10 +5,13 @@ body {
     }
     
     .eliminar {
-        border: 2px solid red;
-        width: 10px;
+        /* display: flex; */
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
     }
     
+
     .btnLikeOn {
         border: #ff897c 3px solid;
     }
@@ -90,7 +93,7 @@ body {
     
     
     .photo {
-        width: 85px;
+        width: 80px;
         border-radius: 50%;
         height: 85px;
     }
@@ -208,6 +211,8 @@ body {
         background-color: none;
         text-align: left;
         font-size: 14px;
+        height: 100%;
+        width: 100%;
         font-family: monospace;
         padding: 15px;
     }
@@ -233,9 +238,9 @@ body {
         width: 42px;
         height: 37px;
         border-radius: 50%;
-        margin-right: 13px;
-        margin-top: 5px;
-        background: grey;
+        margin-right: 20%;
+        margin-top: 0px;
+        /* background: grey; */
     }
     
     .btns-noteEdit {
@@ -338,6 +343,7 @@ body {
     
     #main-muro {
         margin-top: 55px;
+        background-image: url('../SPA/img/fondo-pantalla2.jpg');
     }
     
     .reset {
@@ -440,6 +446,7 @@ body {
         /* View-muro */
     
         #main-muro {
+            background-image: url('../SPA/img/fondo-pantalla2.jpg');
             display: flex;
             justify-content: flex-start;
         }
@@ -498,16 +505,17 @@ body {
             width: 100%;
             display: flex;
             align-items: center;
-            background: rgb(211, 211, 211);
-            box-shadow: rgb(143, 143, 143) 5px 1px 8px;
+            background: rgb(204, 204, 204);
+            box-shadow: rgb(240, 240, 241) 5px 1px 8px;
             height: 55px;
         }
         #out-menu-destok {
             padding-right: 40px;
+            cursor: pointer;
         }
         #icon-down {
+            cursor: pointer;
             display: inline-block;
-            border: 1px solid grey;
             width: 20px;
             height: 20px;
             margin-left: 5px;
@@ -528,13 +536,30 @@ body {
             padding: 15px;
             padding-top: 22px;
         }
-    #main-muro {
-    background-image: url('../SPA/img/fondo-pantalla2.jpg')
-    }
     #infoCurrentUser {
         background: cornsilk;
     }
     .form{
         background: cornsilk;
+    } 
+    #nameUserDestok{
+        display: flex;
+    }
+    .numberLike{
+        font-size: 150%;
+        display: inline;
+        margin: 0%;
+    }
+    .p-alert {
+        font-size: 120%;
+        color: crimson;
+    }
+    .input-form:focus{
+        outline: 0px;
+        box-shadow: 0 0 8px rgb(9, 9, 240);
+        border:1px solid rgba(22, 22, 224, 0.8);
+    }
+    .btn-icon{
+        cursor: pointer;
     }
     }

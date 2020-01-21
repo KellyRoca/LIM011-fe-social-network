@@ -11,7 +11,7 @@ export default () => {
       <input class="input-form" type="email" placeholder="Correo Electrónico">
       <input class="input-form" type="password" placeholder="Contraseña">
       <button class="button-form">Crear cuenta</button>
-      <p></p>
+      <p class="p-alert"></p>
     </form>
   </main>
   `;

@@ -16,4 +16,3 @@ const init = () => {
   initFire();
 };
 window.addEventListener('load', init);
-
