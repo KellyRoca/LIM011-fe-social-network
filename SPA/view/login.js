@@ -15,8 +15,8 @@ export default () => {
   <button class="btn-init" type="text" id="btnLogin"><a id= "changeView" href="#/Principal">Iniciar sesión</a></button>
   <p class="p-alert" id = "errorMensaje"><p>
   <p class="text">O bien ingresa con...</p>
+ 
   <section class="section-redes">
-
     <i id="btn-facebook" class="btn-icon"><img class="icon-network" src="https://img.icons8.com/color/48/000000/facebook-new.png"></i>
 
     <i id="btn-google" class="btn-icon"><img class="icon-network" src="https://img.icons8.com/color/48/000000/google-logo.png"></i>
