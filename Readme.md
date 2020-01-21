@@ -148,9 +148,13 @@ anterior en la siguiente sección.
 ### HTML y CSS
 
 * [x] [HTML semántico](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
+<<<<<<< HEAD
 * [ ] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+=======
+* [ ] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) (SLQE, uso limitado)
+>>>>>>> b43056577aa76a38d4e752b0981a78b1a13c9ce2
 * [ ] Construir tu aplicación respetando el diseño realizado (maquetación).
-
+(relacionado con el css)
 ### DOM y Web APIs
 
 * [x] [Manipulación dinámica del DOM](https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n)
@@ -159,25 +163,36 @@ anterior en la siguiente sección.
 
 ### Javascript
 
+<<<<<<< HEAD
 * [ ] [Uso de callbacks](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
 * [ ] [Consumo de Promesas](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
+=======
+* [ ] [Uso de callbacks](https://developer.mozilla.org/es/docs/Glossary/Callback_function) (SLQE)
+* [ ] [Consumo de Promesas](https://scotch.io/tutorials/ javascript-promises-for-dummies#toc-consuming-promises) (SLQE)
+>>>>>>> b43056577aa76a38d4e752b0981a78b1a13c9ce2
 * [x] Uso ES modules
 ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 | [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
 
 ### Firebase
 
+<<<<<<< HEAD
 * [ ] [Firestore](https://firebase.google.com/docs/firestore)
 * [x] [Firebase Auth](https://firebase.google.com/docs/auth/web/start)
 * [ ] [Firebase security rules](https://firebase.google.com/docs/rules)
+=======
+* [ ] [Firestore](https://firebase.google.com/docs/firestore) (SLQE, uso limitado)
+* [x] [Firebase Auth](https://firebase.google.com/docs/auth/web/start)
+* [ ] [Firebase security rules](https://firebase.google.com/docs/rules) (NSLQE, NLU)
+>>>>>>> b43056577aa76a38d4e752b0981a78b1a13c9ce2
 * [ ] [Uso de onSnapshot](https://firebase.google.com/docs/firestore/query-data/listen)
-| [onAuthStateChanged](https://firebase.google.com/docs/auth/web/start#set_an_authentication_state_observer_and_get_user_data)
+| [onAuthStateChanged](https://firebase.google.com/docs/auth/web/start#set_an_authentication_state_observer_and_get_user_data) (SLQE)
 
 ### Testing
 
-* [ ] [Testeo de tus funciones](https://jestjs.io/docs/es-ES/getting-started)
+* [ ] [Testeo de tus funciones](https://jestjs.io/docs/es-ES/getting-started) (SLQE, aun no testeo)
 * [ ] [Testeo asíncrono](https://jestjs.io/docs/es-ES/asynchronous)
-* [ ] [Mocking](https://jestjs.io/docs/es-ES/manual-mocks)
+* [ ] [Mocking](https://jestjs.io/docs/es-ES/manual-mocks) (LU, testeo auth)
 
 ### Colaboración en Github
 
@@ -185,7 +200,7 @@ anterior en la siguiente sección.
 * [x] Pull Requests
 * [ ] Tags
 
-### Organización en Github
+### Organización en Github (SLQE, NLU)
 
 * [ ] Projects
 * [ ] Issues
@@ -194,9 +209,9 @@ anterior en la siguiente sección.
 
 ### Buenas prácticas de desarrollo
 
-* [ ] Modularización
-* [ ] Nomenclatura / Semántica
-* [ ] Linting
+* [ ] Modularización (SLQE, NLU en todas partes)
+* [ ] Nomenclatura / Semántica (SLQE, NLU en todas partes)
+* [ ] Linting (SLQE, LU, apagado del eslint)
 
 ***
 

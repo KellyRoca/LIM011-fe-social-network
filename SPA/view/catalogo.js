@@ -147,7 +147,7 @@ export default (posts) => {
   close.addEventListener('click', () => { closeModal(modal); });
   window.addEventListener('click', () => { closeGrey(modal); });
 
-  // Pintando todos los comentarios
+  // Pintando todos los comentarios, arg "come"= contenedor
   iterateComments(posts, createComment, comentarios);
 
   return divElement;
